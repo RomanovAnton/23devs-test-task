@@ -10,6 +10,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthWrapperComponent } from './components/auth-wrapper/auth-wrapper.component';
 import { ButtonComponent } from './widgets/button/button.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,7 @@ import { ButtonComponent } from './widgets/button/button.component';
         AuthWrapperComponent,
         ButtonComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+    imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, NgbModule],
     providers: [],
     bootstrap: [AppComponent],
 })

@@ -1,5 +1,5 @@
-<div class="modal">
-    <h2 class="modal__title">Регистрация</h2>
+<div class="block">
+    <h2 class="block__title">Регистрация</h2>
 
     <div class="form__line"></div>
 
@@ -19,10 +19,24 @@
             <input type="text" formControlName="email" placeholder="Электронная почта" class="form__input" />
         </label>
 
-        <label class="form__label">
+        <div class="form__label">
             Дата рождения *
-            <input type="text" formControlName="birthday" placeholder="Дата рождения" class="form__input" />
-        </label>
+            <div class="form__datepicker">
+                <input
+                    ngbDatepicker
+                    #d="ngbDatepicker"
+                    [(ngModel)]="date"
+                    (navigate)="date = { year: 2013, month: 2 }"
+                    placeholder="Дата рождения"
+                    formControlName="birthday"
+                    [minDate]="minDate"
+                    [maxDate]="maxDate"
+                />
+                <button (click)="d.toggle()" type="button" class="form__datepicker-btn">
+                    <img src="/assets/datepicker-icon.svg" alt="datepicker-icon" />
+                </button>
+            </div>
+        </div>
 
         <label class="form__label">
             Пароль *

@@ -11,6 +11,10 @@ export class SignUpComponent {
     form!: FormGroup;
     buttonType = Button;
 
+    date!: { year: number; month: number };
+    minDate = { year: 1900, month: 1, day: 1 };
+    maxDate = { year: new Date().getFullYear(), month: 1, day: 1 };
+
     constructor(private fb: FormBuilder) {}
 
     ngOnInit(): void {
