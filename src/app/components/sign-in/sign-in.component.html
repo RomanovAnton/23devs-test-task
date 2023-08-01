@@ -1,1 +1,21 @@
-<p>sign-in works!</p>
+<div class="modal">
+    <h2 class="modal__title">Авторизация</h2>
+
+    <div class="form__line"></div>
+
+    <form [formGroup]="form" class="form">
+        <label class="form__label form__label_full">
+            Электронная почта *
+            <input type="text" formControlName="email" placeholder="Электронная почта" class="form__input" />
+        </label>
+
+        <label class="form__label form__label_full">
+            Пароль *
+            <input type="text" formControlName="password" class="form__input" placeholder="Пароль" />
+        </label>
+
+        <div class="form__line"></div>
+
+        <app-button class="form__btn" [type]="buttonType.ACTIVE">Войти</app-button>
+    </form>
+</div>

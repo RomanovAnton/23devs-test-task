@@ -1,0 +1,9 @@
+<button
+    class="button"
+    [ngClass]="{
+        active: type === buttonType.ACTIVE,
+        disabled: type === buttonType.DISABLED
+    }"
+>
+    <ng-content></ng-content>
+</button>

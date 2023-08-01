@@ -1,0 +1,24 @@
+.wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(22, 53, 97);
+    background: linear-gradient(337deg, rgba(22, 53, 97, 1) 0%, rgba(102, 129, 169, 1) 0%, rgba(154, 170, 195, 1) 100%);
+    padding: 0 40px;
+
+    &__modal {
+        width: 800px;
+        background-color: #e9ecf0;
+        border-radius: 12px;
+        padding: 40px;
+    }
+
+    @media screen and (max-width: 767px) {
+        padding: 0 20px;
+
+        &__modal {
+            padding: 20px;
+        }
+    }
+}

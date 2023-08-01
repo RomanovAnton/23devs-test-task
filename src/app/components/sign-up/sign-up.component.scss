@@ -1,0 +1,9 @@
+@import "../../../scss/mixins";
+
+.modal {
+    @include modal;
+}
+
+.form {
+    @include form;
+}

@@ -1,2 +1,46 @@
-<p>sign-up works!</p>
-<h2>dsfsfsdfsdfass asfas</h2>
+<div class="modal">
+    <h2 class="modal__title">Регистрация</h2>
+
+    <div class="form__line"></div>
+
+    <form [formGroup]="form" class="form">
+        <label class="form__label">
+            Имя *
+            <input type="text" formControlName="name" placeholder="Имя" class="form__input" />
+        </label>
+
+        <label class="form__label">
+            Фамилия *
+            <input type="text" formControlName="surname" placeholder="Фамилия" class="form__input" />
+        </label>
+
+        <label class="form__label">
+            Электронная почта *
+            <input type="text" formControlName="email" placeholder="Электронная почта" class="form__input" />
+        </label>
+
+        <label class="form__label">
+            Дата рождения *
+            <input type="text" formControlName="birthday" placeholder="Дата рождения" class="form__input" />
+        </label>
+
+        <label class="form__label">
+            Пароль *
+            <input type="text" formControlName="password" class="form__input" placeholder="Пароль" />
+        </label>
+
+        <label class="form__label">
+            Повторите пароль *
+            <input
+                type="password"
+                formControlName="confirmPassword"
+                class="form__input"
+                placeholder="Повторите пароль"
+            />
+        </label>
+
+        <div class="form__line"></div>
+
+        <app-button class="form__btn" [type]="buttonType.ACTIVE">Зарегистрироваться</app-button>
+    </form>
+</div>
