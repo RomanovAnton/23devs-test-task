@@ -7,19 +7,21 @@
         <label class="form__label">
             Имя *
             <input type="text" formControlName="name" placeholder="Имя" class="form__input" />
-            <span *ngIf="checkInputValidity('name')"> {{ getValidationMessage("name") }} </span>
+            <span *ngIf="auth.checkInputValidity(form, 'name')"> {{ auth.getValidationMessage(form, "name") }} </span>
         </label>
 
         <label class="form__label">
             Фамилия *
             <input type="text" formControlName="surname" placeholder="Фамилия" class="form__input" />
-            <span *ngIf="checkInputValidity('surname')"> {{ getValidationMessage("surname") }} </span>
+            <span *ngIf="auth.checkInputValidity(form, 'surname')">
+                {{ auth.getValidationMessage(form, "surname") }}
+            </span>
         </label>
 
         <label class="form__label">
             Электронная почта *
             <input type="text" formControlName="email" placeholder="Электронная почта" class="form__input" />
-            <span *ngIf="checkInputValidity('email')"> {{ getValidationMessage("email") }} </span>
+            <span *ngIf="auth.checkInputValidity(form, 'email')"> {{ auth.getValidationMessage(form, "email") }} </span>
         </label>
 
         <div class="form__label">
@@ -36,13 +38,15 @@
                 class="form__input"
                 readonly
             />
-            <span *ngIf="form.errors?.['ageError']">{{ validationMessages.age }}</span>
+            <span *ngIf="form.errors?.['ageError']">{{ auth.validationMessages.age }}</span>
         </div>
 
         <label class="form__label">
             Пароль *
             <input type="text" formControlName="password" class="form__input" placeholder="Пароль" />
-            <span *ngIf="checkInputValidity('password')"> {{ getValidationMessage("password") }} </span>
+            <span *ngIf="auth.checkInputValidity(form, 'password')">
+                {{ auth.getValidationMessage(form, "password") }}
+            </span>
         </label>
 
         <label class="form__label">
@@ -53,11 +57,11 @@
                 class="form__input"
                 placeholder="Повторите пароль"
             />
-            <span *ngIf="form.errors?.['passwordmatcherror']">{{ validationMessages.confirmPassword }}</span>
+            <span *ngIf="form.errors?.['passwordmatcherror']">{{ auth.validationMessages.confirmPassword }}</span>
         </label>
 
         <div class="form__line form__line_bottom"></div>
 
-        <app-button class="form__btn" [type]="checkFormValidity()">Зарегистрироваться</app-button>
+        <app-button class="form__btn" [type]="auth.setButtonType(form)">Зарегистрироваться</app-button>
     </form>
 </div>
