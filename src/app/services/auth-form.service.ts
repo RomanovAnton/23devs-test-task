@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { Button } from '../enum/Button';
 
 @Injectable({
@@ -37,6 +37,16 @@ export class AuthFormService {
     emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     passwordRegex = /^(?=.*[a-zа-я])(?=.*[A-ZА-Я])(?=.*\d)(?=.*[^a-zа-яA-ZА-Я\d]).*$/;
     ageLimit = 18;
+
+    nameValidationRules = [
+        Validators.required,
+        Validators.pattern(this.nameRegex),
+        Validators.minLength(2),
+        Validators.maxLength(20),
+    ];
+
+    emailValidationRules = [Validators.required, Validators.pattern(this.emailRegex)];
+    passwordValidationRules = [Validators.required, Validators.pattern(this.passwordRegex), Validators.minLength(8)];
 
     constructor() {}
 

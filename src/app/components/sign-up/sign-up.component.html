@@ -62,6 +62,8 @@
 
         <div class="form__line form__line_bottom"></div>
 
-        <app-button class="form__btn" [type]="auth.setButtonType(form)">Зарегистрироваться</app-button>
+        <app-button (click)="handleSubmit()" class="form__btn" [type]="auth.setButtonType(form)"
+            >Зарегистрироваться</app-button
+        >
     </form>
 </div>

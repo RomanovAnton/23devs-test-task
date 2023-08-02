@@ -7,11 +7,15 @@
         <label class="form__label form__label_full">
             Электронная почта *
             <input type="text" formControlName="email" placeholder="Электронная почта" class="form__input" />
+            <span *ngIf="auth.checkInputValidity(form, 'email')"> {{ auth.getValidationMessage(form, "email") }} </span>
         </label>
 
         <label class="form__label form__label_full">
             Пароль *
             <input type="text" formControlName="password" class="form__input" placeholder="Пароль" />
+            <span *ngIf="auth.checkInputValidity(form, 'password')">
+                {{ auth.getValidationMessage(form, "password") }}
+            </span>
         </label>
 
         <div class="form__line"></div>

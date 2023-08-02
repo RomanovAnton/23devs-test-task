@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Button } from 'src/app/enum/Button';
+import { AuthFormService } from 'src/app/services/auth-form.service';
 
 @Component({
     selector: 'app-sign-in',
@@ -11,12 +12,12 @@ export class SignInComponent {
     form!: FormGroup;
     buttonType = Button;
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder, public auth: AuthFormService) {}
 
     ngOnInit(): void {
         this.form = this.fb.group({
-            email: ['', [Validators.required, Validators.email]],
-            password: ['', Validators.required],
+            email: ['', this.auth.emailValidationRules],
+            password: ['', this.auth.passwordValidationRules],
         });
     }
 }

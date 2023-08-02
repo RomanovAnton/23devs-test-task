@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { Button } from 'src/app/enum/Button';
+import { Router } from '@angular/router';
 import { AuthFormService } from 'src/app/services/auth-form.service';
 
 @Component({
@@ -10,40 +10,20 @@ import { AuthFormService } from 'src/app/services/auth-form.service';
 })
 export class SignUpComponent {
     form!: FormGroup;
-    buttonType = Button;
 
     date!: { year: number; month: number };
     minDate = { year: 1900, month: 1, day: 1 };
     maxDate = { year: new Date().getFullYear(), month: new Date().getMonth(), day: new Date().getDay() };
 
-    constructor(private fb: FormBuilder, public auth: AuthFormService) {}
+    constructor(private fb: FormBuilder, public auth: AuthFormService, private router: Router) {}
 
     ngOnInit(): void {
         this.form = this.fb.group(
             {
-                name: [
-                    '',
-                    [
-                        Validators.required,
-                        Validators.pattern(this.auth.nameRegex),
-                        Validators.minLength(2),
-                        Validators.maxLength(20),
-                    ],
-                ],
-                surname: [
-                    '',
-                    [
-                        Validators.required,
-                        Validators.pattern(this.auth.nameRegex),
-                        Validators.minLength(2),
-                        Validators.maxLength(20),
-                    ],
-                ],
-                email: ['', [Validators.required, Validators.pattern(this.auth.emailRegex)]],
-                password: [
-                    '',
-                    [Validators.required, Validators.pattern(this.auth.passwordRegex), Validators.minLength(8)],
-                ],
+                name: ['', this.auth.nameValidationRules],
+                surname: ['', this.auth.nameValidationRules],
+                email: ['', this.auth.emailValidationRules],
+                password: ['', this.auth.passwordValidationRules],
                 confirmPassword: ['', Validators.required],
                 age: ['', [Validators.required]],
             },
@@ -82,5 +62,9 @@ export class SignUpComponent {
         return null;
     };
 
-    
+    handleSubmit() {
+        if (this.form.valid) {
+            this.router.navigate(['/signin']);
+        }
+    }
 }
