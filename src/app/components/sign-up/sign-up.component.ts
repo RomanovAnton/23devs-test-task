@@ -13,7 +13,7 @@ export class SignUpComponent {
 
     date!: { year: number; month: number };
     minDate = { year: 1900, month: 1, day: 1 };
-    maxDate = { year: new Date().getFullYear(), month: 1, day: 1 };
+    maxDate = { year: new Date().getFullYear(), month: new Date().getMonth(), day: new Date().getDay() };
 
     constructor(private fb: FormBuilder) {}
 

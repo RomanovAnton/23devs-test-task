@@ -21,21 +21,18 @@
 
         <div class="form__label">
             Дата рождения *
-            <div class="form__datepicker">
-                <input
-                    ngbDatepicker
-                    #d="ngbDatepicker"
-                    [(ngModel)]="date"
-                    (navigate)="date = { year: 2013, month: 2 }"
-                    placeholder="Дата рождения"
-                    formControlName="birthday"
-                    [minDate]="minDate"
-                    [maxDate]="maxDate"
-                />
-                <button (click)="d.toggle()" type="button" class="form__datepicker-btn">
-                    <img src="/assets/datepicker-icon.svg" alt="datepicker-icon" />
-                </button>
-            </div>
+            <input
+                ngbDatepicker
+                #d="ngbDatepicker"
+                [(ngModel)]="date"
+                placeholder="Дата рождения"
+                formControlName="birthday"
+                [minDate]="minDate"
+                [maxDate]="maxDate"
+                (click)="d.toggle()"
+                class="form__input"
+                readonly
+            />
         </div>
 
         <label class="form__label">
