@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { Button } from '../enum/Button';
 import { BaseService } from './base.service';
-import { User } from '../types/user';
+import { User } from '../types/User';
 
 @Injectable({
     providedIn: 'root',

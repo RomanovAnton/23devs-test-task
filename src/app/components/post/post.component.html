@@ -1,0 +1,12 @@
+<div [formGroup]="form" class="post">
+    <div class="post__field">
+        <span class="post__param">Title</span>
+        <input class="post__input" type="text" formControlName="title" [class.edit]="isEdit" (blur)="handleBlur()" />
+    </div>
+    <div class="post__field">
+        <span class="post__param">Body</span>
+        <input class="post__input" type="text" formControlName="body" [class.edit]="isEdit" />
+    </div>
+
+    <button (click)="handleClick()">VALUES</button>
+</div>

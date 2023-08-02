@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Button } from 'src/app/enum/Button';
 import { AuthFormService } from 'src/app/services/auth-form.service';
@@ -23,6 +23,8 @@ export class SignInComponent {
     }
 
     handleSubmit() {
-        this.router.navigate(['/home']);
+        if (this.form.valid) {
+            this.router.navigate(['/home']);
+        }
     }
 }

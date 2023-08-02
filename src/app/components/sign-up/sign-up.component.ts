@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthFormService } from 'src/app/services/auth-form.service';
-import { User } from 'src/app/types/user';
+import { User } from 'src/app/types/User';
 
 @Component({
     selector: 'app-sign-up',
@@ -19,6 +19,10 @@ export class SignUpComponent {
     constructor(private fb: FormBuilder, public auth: AuthFormService, private router: Router) {}
 
     ngOnInit(): void {
+        this.initForm();
+    }
+
+    initForm() {
         this.form = this.fb.group(
             {
                 name: ['', this.auth.nameValidationRules],

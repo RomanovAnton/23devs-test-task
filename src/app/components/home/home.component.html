@@ -1,1 +1,7 @@
-<p>home works!</p>
+<div class="home">
+    <ul class="list">
+        <li *ngFor="let item of posts" class="list__item">
+            <app-post [data]="item"></app-post>
+        </li>
+    </ul>
+</div>

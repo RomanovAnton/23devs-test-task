@@ -12,6 +12,7 @@ import { AuthWrapperComponent } from './components/auth-wrapper/auth-wrapper.com
 import { ButtonComponent } from './widgets/button/button.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { PostComponent } from './components/post/post.component';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
         HomeComponent,
         AuthWrapperComponent,
         ButtonComponent,
+        PostComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, NgbModule, HttpClientModule],
     providers: [],
