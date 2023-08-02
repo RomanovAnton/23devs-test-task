@@ -7,16 +7,19 @@
         <label class="form__label">
             Имя *
             <input type="text" formControlName="name" placeholder="Имя" class="form__input" />
+            <span *ngIf="checkInputValidity('name')"> {{ getValidationMessage("name") }} </span>
         </label>
 
         <label class="form__label">
             Фамилия *
             <input type="text" formControlName="surname" placeholder="Фамилия" class="form__input" />
+            <span *ngIf="checkInputValidity('surname')"> {{ getValidationMessage("surname") }} </span>
         </label>
 
         <label class="form__label">
             Электронная почта *
             <input type="text" formControlName="email" placeholder="Электронная почта" class="form__input" />
+            <span *ngIf="checkInputValidity('email')"> {{ getValidationMessage("email") }} </span>
         </label>
 
         <div class="form__label">
@@ -26,18 +29,20 @@
                 #d="ngbDatepicker"
                 [(ngModel)]="date"
                 placeholder="Дата рождения"
-                formControlName="birthday"
+                formControlName="age"
                 [minDate]="minDate"
                 [maxDate]="maxDate"
                 (click)="d.toggle()"
                 class="form__input"
                 readonly
             />
+            <span *ngIf="form.errors?.['ageError']">{{ validationMessages.age }}</span>
         </div>
 
         <label class="form__label">
             Пароль *
             <input type="text" formControlName="password" class="form__input" placeholder="Пароль" />
+            <span *ngIf="checkInputValidity('password')"> {{ getValidationMessage("password") }} </span>
         </label>
 
         <label class="form__label">
@@ -48,10 +53,11 @@
                 class="form__input"
                 placeholder="Повторите пароль"
             />
+            <span *ngIf="form.errors?.['passwordmatcherror']">{{ validationMessages.confirmPassword }}</span>
         </label>
 
-        <div class="form__line"></div>
+        <div class="form__line form__line_bottom"></div>
 
-        <app-button class="form__btn" [type]="buttonType.ACTIVE">Зарегистрироваться</app-button>
+        <app-button class="form__btn" [type]="checkFormValidity()">Зарегистрироваться</app-button>
     </form>
 </div>
