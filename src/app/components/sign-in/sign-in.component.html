@@ -20,6 +20,6 @@
 
         <div class="form__line"></div>
 
-        <app-button class="form__btn" [type]="buttonType.ACTIVE">Войти</app-button>
+        <app-button (click)="handleSubmit()" class="form__btn" [type]="buttonType.ACTIVE">Войти</app-button>
     </form>
 </div>

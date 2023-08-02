@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthWrapperComponent } from './components/auth-wrapper/auth-wrapper.component';
 import { ButtonComponent } from './widgets/button/button.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         AuthWrapperComponent,
         ButtonComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, NgbModule],
+    imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, NgbModule, HttpClientModule],
     providers: [],
     bootstrap: [AppComponent],
 })

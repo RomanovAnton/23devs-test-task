@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthFormService } from 'src/app/services/auth-form.service';
+import { User } from 'src/app/types/user';
 
 @Component({
     selector: 'app-sign-up',
@@ -64,7 +65,9 @@ export class SignUpComponent {
 
     handleSubmit() {
         if (this.form.valid) {
-            this.router.navigate(['/signin']);
+            this.auth.create(this.form.value).subscribe((res: User) => {
+                this.router.navigate(['/signin']);
+            });
         }
     }
 }

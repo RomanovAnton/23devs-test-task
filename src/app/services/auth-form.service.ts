@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { Button } from '../enum/Button';
+import { BaseService } from './base.service';
+import { User } from '../types/user';
 
 @Injectable({
     providedIn: 'root',
 })
-export class AuthFormService {
+export class AuthFormService extends BaseService<User> {
+    protected override entityUrlName = 'users';
+
     buttonType = Button;
     validationMessages: any = {
         name: {
@@ -47,8 +51,6 @@ export class AuthFormService {
 
     emailValidationRules = [Validators.required, Validators.pattern(this.emailRegex)];
     passwordValidationRules = [Validators.required, Validators.pattern(this.passwordRegex), Validators.minLength(8)];
-
-    constructor() {}
 
     setButtonType(form: FormGroup) {
         if (form.valid) {
