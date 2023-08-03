@@ -62,8 +62,11 @@ export class SignUpComponent {
                 ageControl.value.day + 1
             );
 
-            const distance = new Date().getFullYear() - new Date(inputTimeStamp).getFullYear();
-            if (distance < this.auth.ageLimit) {
+            const year = 31556952000;
+            const distance = Math.abs(new Date().getTime() - new Date(inputTimeStamp).getTime());
+            const res = distance / year;
+
+            if (res < this.auth.ageLimit) {
                 return {
                     ageError: true,
                 };
