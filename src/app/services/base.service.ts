@@ -10,7 +10,7 @@ export class BaseService<T extends any> {
     constructor(public http: HttpClient) {}
 
     getAll(queryParams: object = {}) {
-        return this.http.get<T>(environment.apiBaseUrl + this.entityUrlName + this.objectToURIParams(queryParams));
+        return this.http.get<T[]>(environment.apiBaseUrl + this.entityUrlName + this.objectToURIParams(queryParams));
     }
 
     create(element: T, queryParams: object = {}) {

@@ -1,12 +1,26 @@
 <div [formGroup]="form" class="post">
     <div class="post__field">
+        <span class="post__param">ID</span>
+        <p class="post__text">{{ data.id }}</p>
+    </div>
+    <div class="post__field">
+        <span class="post__param">Owner</span>
+        <p class="post__text">{{ data.userId }}</p>
+    </div>
+    <div class="post__field">
         <span class="post__param">Title</span>
-        <input class="post__input" type="text" formControlName="title" [class.edit]="isEdit" (blur)="handleBlur()" />
+        <input class="post__input" type="text" formControlName="title" [class.edit]="isEdit" />
     </div>
     <div class="post__field">
         <span class="post__param">Body</span>
         <input class="post__input" type="text" formControlName="body" [class.edit]="isEdit" />
     </div>
 
-    <button (click)="handleClick()">VALUES</button>
+    <div class="post__btns">
+        <app-button (click)="handleEditClick()" [type]="buttonType.SMALL">{{
+            isEdit ? "Сохранить" : "Редактировать"
+        }}</app-button>
+
+        <app-button (click)="handleDelete()" [type]="buttonType.SMALL">Удалить</app-button>
+    </div>
 </div>

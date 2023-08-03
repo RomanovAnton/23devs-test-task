@@ -1,0 +1,51 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    &__page,
+    &__prev,
+    &__next {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
+        text-decoration: none;
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    &__page.active {
+        background-color: #4b70a6;
+        color: white;
+    }
+
+    &__prev.disabled,
+    &__next.disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
+
+    .rotate {
+        transform: rotate(180deg);
+    }
+
+    @media screen and (max-width: 767px) {
+        &__next,
+        &__prev,
+        &__page {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
+}

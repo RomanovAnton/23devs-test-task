@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Button } from 'src/app/enum/Button';
+import { PostsService } from 'src/app/services/posts.service';
 import { Post } from 'src/app/types/Post';
 
 @Component({
@@ -11,8 +13,9 @@ export class PostComponent implements OnInit {
     @Input() data!: Post;
     form!: FormGroup;
     isEdit = false;
+    buttonType = Button;
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder, private post: PostsService) {}
 
     ngOnInit(): void {
         this.initForm();
@@ -28,11 +31,16 @@ export class PostComponent implements OnInit {
         });
     }
 
-    handleClick() {
+    handleEditClick() {
         this.isEdit = !this.isEdit;
     }
 
-    handleBlur() {
-        this.handleClick();
+    handleDelete() {
+        this.post.toggleLoading();
+        this.post.delete(this.data.id).subscribe(() => {
+            this.post.posts = [...this.post.posts].filter((el) => el.id !== this.data.id);
+            this.post.getPaginatedPosts();
+            this.post.toggleLoading();
+        });
     }
 }

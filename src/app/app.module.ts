@@ -13,6 +13,8 @@ import { ButtonComponent } from './widgets/button/button.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './components/post/post.component';
+import { PaginationComponent } from './widgets/pagination/pagination.component';
+import { AddModalComponent } from './components/add-modal/add-modal.component';
 
 @NgModule({
     declarations: [
@@ -23,6 +25,8 @@ import { PostComponent } from './components/post/post.component';
         AuthWrapperComponent,
         ButtonComponent,
         PostComponent,
+        PaginationComponent,
+        AddModalComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, NgbModule, HttpClientModule],
     providers: [],

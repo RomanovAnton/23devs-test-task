@@ -1,0 +1,17 @@
+<div class="pagination">
+    <a class="pagination__prev" [class.disabled]="currentPage === 1" (click)="previousPage()">
+        <img src="/assets/left-arrow.svg" alt="left-arrow" />
+    </a>
+    <ng-container>
+        <a
+            class="pagination__page"
+            *ngFor="let page of getPages() | slice : 0 : lastPage"
+            [class.active]="page === currentPage"
+            (click)="goToPage(page)"
+            >{{ page }}</a
+        >
+    </ng-container>
+    <a class="pagination__next" [class.disabled]="currentPage === lastPage" (click)="nextPage()">
+        <img src="/assets/left-arrow.svg" alt="left-arrow" class="rotate" />
+    </a>
+</div>

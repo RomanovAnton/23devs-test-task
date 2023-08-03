@@ -1,0 +1,15 @@
+<form [formGroup]="form" class="block">
+    <ng-container *ngIf="!post.isLoading; else loading">
+        <div class="block__field">
+            <span class="block__param">Title</span>
+            <input class="block__input" type="text" formControlName="title" />
+        </div>
+        <div class="block__field">
+            <span class="block__param">Body</span>
+            <input class="block__input" type="text" formControlName="body" />
+        </div>
+        <app-button class="block__btn" [type]="auth.setButtonType(form)" (click)="handleSubmit()">Сохранить</app-button>
+    </ng-container>
+</form>
+
+<ng-template #loading> ...Loading </ng-template>
