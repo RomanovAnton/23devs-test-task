@@ -18,10 +18,10 @@
             <span *ngIf="baseForm.checkInputValidity(form, 'password')">
                 {{ baseForm.getValidationMessage(form, "password", auth.validationMessages) }}
             </span>
-        </label>
+        </label>~
 
         <div class="form__line"></div>
 
-        <app-button (click)="handleSubmit()" class="form__btn" [type]="buttonType.ACTIVE">Войти</app-button>
+        <app-button (click)="handleSubmit()" class="form__btn" [type]="baseForm.setButtonType(form)">Войти</app-button>
     </form>
 </div>
