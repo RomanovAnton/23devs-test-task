@@ -4,17 +4,26 @@
     align-items: flex-start;
 
     &__field {
+        position: relative;
         width: 100%;
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 8px 0 16px;
+        padding: 8px 0 20px;
         border-bottom: 1px solid rgb(179, 181, 190);
+    }
+
+    &__error {
+        position: absolute;
+        top: 45px;
+        left: 56px;
+        font-weight: 400;
+        font-size: 14px;
+        color: red;
     }
 
     &__param {
         width: 50px;
-        clear: grey;
     }
 
     &__input {

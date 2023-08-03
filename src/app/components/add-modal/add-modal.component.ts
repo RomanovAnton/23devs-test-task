@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Button } from 'src/app/enum/Button';
 import { AuthFormService } from 'src/app/services/auth-form.service';
+import { BaseFormService } from 'src/app/services/base-form.service';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class AddModalComponent {
         private fb: FormBuilder,
         public auth: AuthFormService,
         public post: PostsService,
+        public baseForm: BaseFormService,
         private activeModal: NgbActiveModal
     ) {}
 
@@ -28,8 +30,8 @@ export class AddModalComponent {
     initForm() {
         this.form = this.fb.group({
             userId: ['999'],
-            title: ['', Validators.required],
-            body: ['', Validators.required],
+            title: ['', this.post.titleValidationRules],
+            body: ['', this.post.bodyValidationRules],
         });
     }
 

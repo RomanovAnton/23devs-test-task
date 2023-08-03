@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthFormService } from 'src/app/services/auth-form.service';
+import { BaseFormService } from 'src/app/services/base-form.service';
 import { User } from 'src/app/types/User';
 
 @Component({
@@ -16,7 +17,12 @@ export class SignUpComponent {
     minDate = { year: 1900, month: 1, day: 1 };
     maxDate = { year: new Date().getFullYear(), month: new Date().getMonth(), day: new Date().getDay() };
 
-    constructor(private fb: FormBuilder, public auth: AuthFormService, private router: Router) {}
+    constructor(
+        private fb: FormBuilder,
+        public auth: AuthFormService,
+        private router: Router,
+        public baseForm: BaseFormService
+    ) {}
 
     ngOnInit(): void {
         this.initForm();

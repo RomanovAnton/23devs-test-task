@@ -5,6 +5,7 @@
     box-sizing: border-box;
     border: none;
     width: 100%;
+    min-width: 150px;
     height: 48px;
     border-radius: 8px;
     font-weight: 400;
@@ -27,12 +28,4 @@
 .disabled {
     background-color: #c0cbd4;
     cursor: auto;
-}
-
-.small {
-    background-color: #4b70a6;
-    width: 150px;
-    height: 30px;
-    font-size: 16px;
-    line-height: 22px;
 }

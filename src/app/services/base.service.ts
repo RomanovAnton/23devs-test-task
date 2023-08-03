@@ -20,8 +20,8 @@ export class BaseService<T extends any> {
         );
     }
 
-    update(data: T) {
-        return this.http.patch<null>(environment.apiBaseUrl + this.entityUrlName, data);
+    update(id: number, data: T) {
+        return this.http.patch<null>(environment.apiBaseUrl + this.entityUrlName + '/' + id, data);
     }
 
     delete(id: number) {

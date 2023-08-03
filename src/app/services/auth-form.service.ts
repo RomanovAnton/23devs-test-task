@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { Button } from '../enum/Button';
 import { BaseService } from './base.service';
 import { User } from '../types/User';
@@ -51,30 +51,4 @@ export class AuthFormService extends BaseService<User> {
 
     emailValidationRules = [Validators.required, Validators.pattern(this.emailRegex)];
     passwordValidationRules = [Validators.required, Validators.pattern(this.passwordRegex), Validators.minLength(8)];
-
-    setButtonType(form: FormGroup) {
-        if (form.valid) {
-            return this.buttonType.ACTIVE;
-        } else {
-            return this.buttonType.DISABLED;
-        }
-    }
-
-    checkInputValidity(form: FormGroup, inputName: string) {
-        const input = form.get(inputName);
-        if (input!.invalid && (input!.dirty || input!.touched)) {
-            return true;
-        }
-        return false;
-    }
-
-    getValidationMessage(form: FormGroup, inputName: string) {
-        const input = form.get(inputName);
-        if (input!.errors) {
-            for (let key in input!.errors) {
-                return this.validationMessages[inputName][key];
-            }
-        }
-        return '';
-    }
 }

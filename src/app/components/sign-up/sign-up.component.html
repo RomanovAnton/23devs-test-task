@@ -7,21 +7,25 @@
         <label class="form__label">
             Имя *
             <input type="text" formControlName="name" placeholder="Имя" class="form__input" />
-            <span *ngIf="auth.checkInputValidity(form, 'name')"> {{ auth.getValidationMessage(form, "name") }} </span>
+            <span *ngIf="baseForm.checkInputValidity(form, 'name')">
+                {{ baseForm.getValidationMessage(form, "name", this.auth.validationMessages) }}
+            </span>
         </label>
 
         <label class="form__label">
             Фамилия *
             <input type="text" formControlName="surname" placeholder="Фамилия" class="form__input" />
-            <span *ngIf="auth.checkInputValidity(form, 'surname')">
-                {{ auth.getValidationMessage(form, "surname") }}
+            <span *ngIf="baseForm.checkInputValidity(form, 'surname')">
+                {{ baseForm.getValidationMessage(form, "surname", this.auth.validationMessages) }}
             </span>
         </label>
 
         <label class="form__label">
             Электронная почта *
             <input type="text" formControlName="email" placeholder="Электронная почта" class="form__input" />
-            <span *ngIf="auth.checkInputValidity(form, 'email')"> {{ auth.getValidationMessage(form, "email") }} </span>
+            <span *ngIf="baseForm.checkInputValidity(form, 'email')">
+                {{ baseForm.getValidationMessage(form, "email", this.auth.validationMessages) }}
+            </span>
         </label>
 
         <div class="form__label">
@@ -44,8 +48,8 @@
         <label class="form__label">
             Пароль *
             <input type="text" formControlName="password" class="form__input" placeholder="Пароль" />
-            <span *ngIf="auth.checkInputValidity(form, 'password')">
-                {{ auth.getValidationMessage(form, "password") }}
+            <span *ngIf="baseForm.checkInputValidity(form, 'password')">
+                {{ baseForm.getValidationMessage(form, "password", this.auth.validationMessages) }}
             </span>
         </label>
 
@@ -62,10 +66,8 @@
 
         <div class="form__line form__line_bottom"></div>
 
-        <app-button (click)="handleSubmit()" class="form__btn" [type]="auth.setButtonType(form)"
+        <app-button (click)="handleSubmit()" class="form__btn" [type]="baseForm.setButtonType(form)"
             >Зарегистрироваться</app-button
         >
-
-        <button routerLink="/home">to home</button>
     </form>
 </div>

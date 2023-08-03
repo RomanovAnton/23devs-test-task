@@ -3,12 +3,20 @@
         <div class="block__field">
             <span class="block__param">Title</span>
             <input class="block__input" type="text" formControlName="title" />
+            <span class="block__error" *ngIf="baseForm.checkInputValidity(form, 'title')">
+                {{ baseForm.getValidationMessage(form, "title", this.post.validationMessages) }}
+            </span>
         </div>
         <div class="block__field">
             <span class="block__param">Body</span>
             <input class="block__input" type="text" formControlName="body" />
+            <span class="block__error" *ngIf="baseForm.checkInputValidity(form, 'body')">
+                {{ baseForm.getValidationMessage(form, "body", this.post.validationMessages) }}
+            </span>
         </div>
-        <app-button class="block__btn" [type]="auth.setButtonType(form)" (click)="handleSubmit()">Сохранить</app-button>
+        <app-button class="block__btn" [type]="baseForm.setButtonType(form)" (click)="handleSubmit()"
+            >Сохранить</app-button
+        >
     </ng-container>
 </form>
 

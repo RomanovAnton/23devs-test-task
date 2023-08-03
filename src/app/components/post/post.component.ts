@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Button } from 'src/app/enum/Button';
+import { BaseFormService } from 'src/app/services/base-form.service';
 import { PostsService } from 'src/app/services/posts.service';
 import { Post } from 'src/app/types/Post';
 
@@ -15,7 +16,24 @@ export class PostComponent implements OnInit {
     isEdit = false;
     buttonType = Button;
 
-    constructor(private fb: FormBuilder, private post: PostsService) {}
+    @HostListener('click', ['$event'])
+    onClick(event: MouseEvent) {
+        const clickedElement = event.target as HTMLElement;
+        if (
+            !clickedElement.classList.contains('post__input') &&
+            !clickedElement.classList.contains('button') &&
+            this.form.valid
+        ) {
+            this.isEdit = false;
+        }
+    }
+
+    constructor(
+        private fb: FormBuilder,
+        private post: PostsService,
+        public posts: PostsService,
+        public baseForm: BaseFormService
+    ) {}
 
     ngOnInit(): void {
         this.initForm();
@@ -26,13 +44,26 @@ export class PostComponent implements OnInit {
 
     initForm() {
         this.form = this.fb.group({
-            title: [''],
-            body: [''],
+            title: ['', this.post.titleValidationRules],
+            body: ['', this.post.bodyValidationRules],
         });
     }
 
     handleEditClick() {
         this.isEdit = !this.isEdit;
+        if (!this.isEdit) {
+            this.post.toggleLoading();
+            this.post.update(this.data.id, this.form.value).subscribe(() => {
+                this.post.posts = [...this.post.posts].map((el) => {
+                    if (el.id == this.data.id) {
+                        return { ...el, title: this.form.value.title, body: this.form.value.body };
+                    }
+                    return el;
+                });
+                this.post.getPaginatedPosts();
+                this.post.toggleLoading();
+            });
+        }
     }
 
     handleDelete() {
@@ -42,5 +73,13 @@ export class PostComponent implements OnInit {
             this.post.getPaginatedPosts();
             this.post.toggleLoading();
         });
+    }
+
+    checkInputValidity(inputName: string) {
+        const input = this.form.get(inputName);
+        if (input!.invalid && (input!.dirty || input!.touched)) {
+            return true;
+        }
+        return false;
     }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Button } from 'src/app/enum/Button';
 import { AuthFormService } from 'src/app/services/auth-form.service';
+import { BaseFormService } from 'src/app/services/base-form.service';
 
 @Component({
     selector: 'app-sign-in',
@@ -13,7 +14,12 @@ export class SignInComponent {
     form!: FormGroup;
     buttonType = Button;
 
-    constructor(private fb: FormBuilder, public auth: AuthFormService, private router: Router) {}
+    constructor(
+        private fb: FormBuilder,
+        public auth: AuthFormService,
+        private router: Router,
+        public baseForm: BaseFormService
+    ) {}
 
     ngOnInit(): void {
         this.form = this.fb.group({

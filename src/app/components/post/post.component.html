@@ -10,17 +10,23 @@
     <div class="post__field">
         <span class="post__param">Title</span>
         <input class="post__input" type="text" formControlName="title" [class.edit]="isEdit" />
+        <span class="post__error" *ngIf="baseForm.checkInputValidity(form, 'title')">
+            {{ baseForm.getValidationMessage(form, "title", this.posts.validationMessages) }}
+        </span>
     </div>
     <div class="post__field">
         <span class="post__param">Body</span>
         <input class="post__input" type="text" formControlName="body" [class.edit]="isEdit" />
+        <span class="post__error" *ngIf="baseForm.checkInputValidity(form, 'body')">
+            {{ baseForm.getValidationMessage(form, "body", this.posts.validationMessages) }}
+        </span>
     </div>
 
     <div class="post__btns">
-        <app-button (click)="handleEditClick()" [type]="buttonType.SMALL">{{
+        <app-button (click)="handleEditClick()" [type]="baseForm.setButtonType(form)">{{
             isEdit ? "Сохранить" : "Редактировать"
         }}</app-button>
 
-        <app-button (click)="handleDelete()" [type]="buttonType.SMALL">Удалить</app-button>
+        <app-button (click)="handleDelete()" [type]="buttonType.ACTIVE">Удалить</app-button>
     </div>
 </div>
