@@ -12,6 +12,7 @@ import { Post } from 'src/app/types/Post';
 })
 export class PostComponent implements OnInit {
     @Input() data!: Post;
+
     form!: FormGroup;
     isEdit = false;
     buttonType = Button;
@@ -53,25 +54,35 @@ export class PostComponent implements OnInit {
         this.isEdit = !this.isEdit;
         if (!this.isEdit) {
             this.post.toggleLoading();
-            this.post.update(this.data.id, this.form.value).subscribe(() => {
-                this.post.posts = [...this.post.posts].map((el) => {
-                    if (el.id == this.data.id) {
-                        return { ...el, title: this.form.value.title, body: this.form.value.body };
-                    }
-                    return el;
-                });
-                this.post.getPaginatedPosts();
-                this.post.toggleLoading();
+            this.post.update(this.data.id, this.form.value).subscribe({
+                next: () => {
+                    this.post.posts = [...this.post.posts].map((el) => {
+                        if (el.id == this.data.id) {
+                            return { ...el, title: this.form.value.title, body: this.form.value.body };
+                        }
+                        return el;
+                    });
+                    this.post.getPaginatedPosts();
+                    this.post.toggleLoading();
+                },
+                error: () => {
+                    this.post.toggleLoading();
+                },
             });
         }
     }
 
     handleDelete() {
         this.post.toggleLoading();
-        this.post.delete(this.data.id).subscribe(() => {
-            this.post.posts = [...this.post.posts].filter((el) => el.id !== this.data.id);
-            this.post.getPaginatedPosts();
-            this.post.toggleLoading();
+        this.post.delete(this.data.id).subscribe({
+            next: () => {
+                this.post.posts = [...this.post.posts].filter((el) => el.id !== this.data.id);
+                this.post.getPaginatedPosts();
+                this.post.toggleLoading();
+            },
+            error: () => {
+                this.post.toggleLoading();
+            },
         });
     }
 

@@ -3,7 +3,6 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn,
 import { Router } from '@angular/router';
 import { AuthFormService } from 'src/app/services/auth-form.service';
 import { BaseFormService } from 'src/app/services/base-form.service';
-import { User } from 'src/app/types/User';
 
 @Component({
     selector: 'app-sign-up',
@@ -63,7 +62,7 @@ export class SignUpComponent {
             );
 
             const year = 31556952000;
-            const distance = Math.abs(new Date().getTime() - new Date(inputTimeStamp).getTime());
+            const distance = new Date().getTime() - new Date(inputTimeStamp).getTime();
             const res = distance / year;
 
             if (res < this.auth.ageLimit) {
@@ -78,8 +77,16 @@ export class SignUpComponent {
 
     handleSubmit() {
         if (this.form.valid) {
-            this.auth.create(this.form.value).subscribe((res: User) => {
-                this.router.navigate(['/signin']);
+            this.auth.toggleLoading();
+            this.auth.create(this.form.value).subscribe({
+                next: () => {
+                    this.auth.toggleLoading();
+                    this.router.navigate(['/signin']);
+                },
+                error: (err) => {
+                    this.auth.toggleLoading();
+                    console.log(err);
+                },
             });
         }
     }

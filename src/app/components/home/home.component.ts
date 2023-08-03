@@ -3,8 +3,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Button } from 'src/app/enum/Button';
 import { PostsService } from 'src/app/services/posts.service';
 import { Post } from 'src/app/types/Post';
-import { AddModalComponent } from '../add-modal/add-modal.component';
 import { Subscription, delay, interval } from 'rxjs';
+import { AddPostModalComponent } from '../add-post-modal/add-post-modal.component';
 
 @Component({
     selector: 'app-home',
@@ -17,10 +17,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     constructor(public post: PostsService, private modal: NgbModal) {}
 
     ngOnInit() {
-        this.updateData();
+        this.updatePosts();
 
         this.updateSub = interval(120000).subscribe(() => {
-            this.updateData();
+            this.updatePosts();
         });
     }
 
@@ -28,15 +28,20 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.updateSub.unsubscribe();
     }
 
-    updateData() {
+    updatePosts() {
         this.post.toggleLoading();
         this.post
             .getAll()
             .pipe(delay(1500))
-            .subscribe((res: Post[]) => {
-                this.post.posts = res;
-                this.post.getPaginatedPosts();
-                this.post.toggleLoading();
+            .subscribe({
+                next: (res: Post[]) => {
+                    this.post.posts = res;
+                    this.post.getPaginatedPosts();
+                    this.post.toggleLoading();
+                },
+                error: () => {
+                    this.post.toggleLoading();
+                },
             });
     }
 
@@ -47,6 +52,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     handleAddBtn() {
-        this.modal.open(AddModalComponent, { size: 'lg' });
+        this.modal.open(AddPostModalComponent, { size: 'lg' });
     }
 }

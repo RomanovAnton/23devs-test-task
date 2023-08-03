@@ -9,7 +9,7 @@ import { User } from '../types/User';
 })
 export class AuthFormService extends BaseService<User> {
     protected override entityUrlName = 'users';
-
+    isLoading = false;
     buttonType = Button;
     validationMessages: any = {
         name: {
@@ -30,7 +30,7 @@ export class AuthFormService extends BaseService<User> {
         },
         password: {
             required: 'Это обязательное поле',
-            pattern: 'Пароль должен содержать: цифру, символ, заглавную и строчную буквы,',
+            pattern: 'Пароль должен содержать: цифру, символ, заглавную и строчную буквы',
             minlength: 'Минимальная длина 8',
         },
         confirmPassword: 'Пароли не совпадают',
@@ -51,4 +51,8 @@ export class AuthFormService extends BaseService<User> {
 
     emailValidationRules = [Validators.required, Validators.pattern(this.emailRegex)];
     passwordValidationRules = [Validators.required, Validators.pattern(this.passwordRegex), Validators.minLength(8)];
+
+    toggleLoading() {
+        this.isLoading = !this.isLoading;
+    }
 }

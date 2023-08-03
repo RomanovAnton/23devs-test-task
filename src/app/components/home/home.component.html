@@ -1,5 +1,7 @@
 <div class="home">
-    <div class="home__overlay" [class.visible]="post.isLoading"></div>
+    <div class="home__overlay" [class.visible]="post.isLoading">
+        <app-loader></app-loader>
+    </div>
 
     <ng-container *ngIf="post.posts.length > 0">
         <app-button (click)="handleAddBtn()" [type]="buttonType.ACTIVE">Создать пост</app-button>

@@ -1,5 +1,8 @@
 <div class="wrapper">
     <div class="wrapper__modal">
+        <div class="wrapper__overlay" [class.visible]="auth.isLoading">
+            <app-loader></app-loader>
+        </div>
         <router-outlet></router-outlet>
     </div>
 </div>
