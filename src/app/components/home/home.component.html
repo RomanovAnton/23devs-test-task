@@ -1,15 +1,17 @@
 <div class="home">
     <div class="home__overlay" [class.visible]="post.isLoading"></div>
 
-    <app-button (click)="handleAddBtn()" [type]="buttonType.ACTIVE">Создать пост</app-button>
-    <ul class="list">
-        <li *ngFor="let item of post.paginatedPosts" class="list__item">
-            <app-post [data]="item"></app-post>
-        </li>
-    </ul>
-    <app-pagination
-        [currentPage]="post.currentPage"
-        [lastPage]="post.lastPage"
-        (pageChange)="onPageChange($event)"
-    ></app-pagination>
+    <ng-container *ngIf="post.posts.length > 0">
+        <app-button (click)="handleAddBtn()" [type]="buttonType.ACTIVE">Создать пост</app-button>
+        <ul class="list">
+            <li *ngFor="let item of post.paginatedPosts" class="list__item">
+                <app-post [data]="item"></app-post>
+            </li>
+        </ul>
+        <app-pagination
+            [currentPage]="post.currentPage"
+            [lastPage]="post.lastPage"
+            (pageChange)="onPageChange($event)"
+        ></app-pagination>
+    </ng-container>
 </div>

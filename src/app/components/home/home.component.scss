@@ -4,6 +4,7 @@
     flex-direction: column;
     gap: 25px;
     position: relative;
+    min-height: 100vh;
 
     &__btn {
         margin: 16px 0;
